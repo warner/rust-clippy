@@ -298,6 +298,7 @@ mod trivially_copy_pass_by_ref;
 mod try_err;
 mod types;
 mod unicode;
+mod unintentional_unit_return;
 mod unnamed_address;
 mod unnecessary_sort_by;
 mod unnested_or_patterns;
@@ -820,6 +821,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
         &unicode::NON_ASCII_LITERAL,
         &unicode::UNICODE_NOT_NFC,
         &unicode::ZERO_WIDTH_SPACE,
+        &unintentional_unit_return::UNINTENTIONAL_UNIT_RETURN,
         &unnamed_address::FN_ADDRESS_COMPARISONS,
         &unnamed_address::VTABLE_ADDRESS_COMPARISONS,
         &unnecessary_sort_by::UNNECESSARY_SORT_BY,
@@ -885,6 +887,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
     store.register_late_pass(|| box attrs::Attributes);
     store.register_late_pass(|| box blocks_in_if_conditions::BlocksInIfConditions);
     store.register_late_pass(|| box unicode::Unicode);
+    store.register_late_pass(|| box unintentional_unit_return::UnintentionalUnitReturn);
     store.register_late_pass(|| box strings::StringAdd);
     store.register_late_pass(|| box implicit_return::ImplicitReturn);
     store.register_late_pass(|| box implicit_saturating_sub::ImplicitSaturatingSub);
@@ -1727,6 +1730,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
         LintId::of(&path_buf_push_overwrite::PATH_BUF_PUSH_OVERWRITE),
         LintId::of(&redundant_pub_crate::REDUNDANT_PUB_CRATE),
         LintId::of(&transmute::USELESS_TRANSMUTE),
+        LintId::of(&unintentional_unit_return::UNINTENTIONAL_UNIT_RETURN),
         LintId::of(&use_self::USE_SELF),
     ]);
 }
