@@ -1426,6 +1426,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
         LintId::of(&types::UNNECESSARY_CAST),
         LintId::of(&types::VEC_BOX),
         LintId::of(&unicode::ZERO_WIDTH_SPACE),
+        LintId::of(&unintentional_unit_return::UNINTENTIONAL_UNIT_RETURN),
         LintId::of(&unnamed_address::FN_ADDRESS_COMPARISONS),
         LintId::of(&unnamed_address::VTABLE_ADDRESS_COMPARISONS),
         LintId::of(&unnecessary_sort_by::UNNECESSARY_SORT_BY),
@@ -1681,6 +1682,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
         LintId::of(&types::CAST_REF_TO_MUT),
         LintId::of(&types::UNIT_CMP),
         LintId::of(&unicode::ZERO_WIDTH_SPACE),
+        LintId::of(&unintentional_unit_return::UNINTENTIONAL_UNIT_RETURN),
         LintId::of(&unnamed_address::FN_ADDRESS_COMPARISONS),
         LintId::of(&unnamed_address::VTABLE_ADDRESS_COMPARISONS),
         LintId::of(&unused_io_amount::UNUSED_IO_AMOUNT),
@@ -1730,7 +1732,6 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
         LintId::of(&path_buf_push_overwrite::PATH_BUF_PUSH_OVERWRITE),
         LintId::of(&redundant_pub_crate::REDUNDANT_PUB_CRATE),
         LintId::of(&transmute::USELESS_TRANSMUTE),
-        LintId::of(&unintentional_unit_return::UNINTENTIONAL_UNIT_RETURN),
         LintId::of(&use_self::USE_SELF),
     ]);
 }

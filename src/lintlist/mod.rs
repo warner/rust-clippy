@@ -2252,8 +2252,8 @@ pub static ref ALL_LINTS: Vec<Lint> = vec![
     },
     Lint {
         name: "unintentional_unit_return",
-        group: "nursery",
-        desc: "fn arguments of type Fn(...) -> Once having last statements with a semi-colon, suggesting to remove the semi-colon if it is unintentional.",
+        group: "correctness",
+        desc: "fn arguments of type Fn(...) -> Ord returning the unit type ().",
         deprecation: None,
         module: "unintentional_unit_return",
     },

@@ -10,12 +10,13 @@ use rustc_span::{BytePos, Span};
 
 declare_clippy_lint! {
     /// **What it does:** Checks for functions that expect closures of type
-    /// Fn(...) -> Ord where the implemented closure has a semi-colon
-    /// at the end of the last statement.
+    /// Fn(...) -> Ord where the implemented closure returns the unit type.
+    /// The lint also suggests to remove the semi-colon at the end of the statement if present.
     ///
-    /// **Why is this bad?** Likely the semi-colon is unintentional which
-    /// returns () instead of the result of last statement. Since () implements Ord
-    /// it doesn't cause a compilation error
+    /// **Why is this bad?** Likely, returning the unit type is unintentional, and
+    /// could simply be caused by an extra semi-colon. Since () implements Ord
+    /// it doesn't cause a compilation error.
+    /// This is the same reasoning behind the unit_cmp lint.
     ///
     /// **Known problems:** If returning unit is intentional, then there is no
     /// way of specifying this without triggering needless_return lint
@@ -27,8 +28,8 @@ declare_clippy_lint! {
     /// twins.sort_by_key(|x| { x.1; });
     /// ```
     pub UNINTENTIONAL_UNIT_RETURN,
-    nursery,
-    "fn arguments of type Fn(...) -> Once having last statements with a semi-colon, suggesting to remove the semi-colon if it is unintentional."
+    correctness,
+    "fn arguments of type Fn(...) -> Ord returning the unit type ()."
 }
 
 declare_lint_pass!(UnintentionalUnitReturn => [UNINTENTIONAL_UNIT_RETURN]);
