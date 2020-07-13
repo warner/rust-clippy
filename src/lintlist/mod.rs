@@ -2272,6 +2272,13 @@ pub static ref ALL_LINTS: Vec<Lint> = vec![
         module: "methods",
     },
     Lint {
+        name: "unintentional_unit_return",
+        group: "correctness",
+        desc: "fn arguments of type Fn(...) -> Ord returning the unit type ().",
+        deprecation: None,
+        module: "unintentional_unit_return",
+    },
+    Lint {
         name: "unit_arg",
         group: "complexity",
         desc: "passing unit to a function",
